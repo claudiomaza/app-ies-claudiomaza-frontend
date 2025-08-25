@@ -2,20 +2,24 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
+import { AuthContext } from '../AuthContext'; 
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { setIsAuthenticated } = useContext(AuthContext); 
 
   const handleLogin = (e) => {
     e.preventDefault();
     const storedUser = JSON.parse(localStorage.getItem('user'));
 
     if (storedUser && storedUser.email === email && storedUser.password === password) {
-      localStorage.setItem('isAuthenticated', 'true');
+      setIsAuthenticated(true); // Actualiza el estado global
       alert('¡Inicio de sesión exitoso!');
-      navigate('/activities');
+      setTimeout(() => {
+          navigate('/activities');
+      }, 100); // 100 milisegundos de retraso
     } else {
       alert('Correo o contraseña incorrectos.');
     }
