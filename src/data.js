@@ -6,7 +6,7 @@ export const activities = [
     description: "Una experiencia inmersiva para conectar cuerpo y mente, explorando movimientos conscientes y la atención plena en cada postura.",
     price: 45000,
     availability: "Disponible los martes y jueves",
-    photoUrl: "https://images.pexels.com/photos/3822851/pexels-photo-3822851.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    photoUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop"
   },
   {
     id: 2,
