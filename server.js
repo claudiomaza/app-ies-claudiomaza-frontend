@@ -11,7 +11,7 @@ server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
 // Personaliza la ruta POST para simular la creación de una reserva
-server.post('/api/reservations', (req, res, next) => {
+server.post('/reservations', (req, res, next) => {
   // Tomamos los datos enviados por el frontend
   const { activityId, paymentMethod } = req.body;
 

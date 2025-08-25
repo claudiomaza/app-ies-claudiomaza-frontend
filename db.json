@@ -1,4 +1,30 @@
 {
   "activities": [],
-  "reservations": []
+  "reservations": [
+    {
+      "id": "0b0b",
+      "activityId": 3,
+      "paymentMethod": "credit_card"
+    },
+    {
+      "id": "bc58",
+      "activityId": 2,
+      "paymentMethod": "credit_card"
+    },
+    {
+      "id": "c97f",
+      "activityId": 2,
+      "paymentMethod": "credit_card"
+    },
+    {
+      "id": "bd39",
+      "activityId": 1,
+      "paymentMethod": "credit_card"
+    },
+    {
+      "id": "a808",
+      "activityId": 2,
+      "paymentMethod": "credit_card"
+    }
+  ]
 }

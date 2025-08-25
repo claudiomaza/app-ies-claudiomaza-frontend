@@ -17,7 +17,7 @@ export const ActivityDetails = ({ activities }) => {
     e.preventDefault();
     try {
       // Hace una llamada POST al servidor simulado
-      const response = await axios.post('http://localhost:3001/api/reservations', {
+      const response = await axios.post('http://localhost:3001/reservations', {
         activityId: activity.id,
         paymentMethod: 'credit_card' // Simula un método de pago
       });
