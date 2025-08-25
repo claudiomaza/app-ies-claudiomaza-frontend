@@ -31,7 +31,7 @@ export const ActivityDetails = ({ activities }) => {
       localStorage.setItem('reservations', JSON.stringify([...currentReservations, response.data]));
 
       // Redirige al usuario
-    navigate('/activities');
+      navigate('/activities');
     } catch (error) {
       console.error('Error al hacer la reserva:', error);
       alert('Hubo un error al procesar la reserva. Intente de nuevo.');
@@ -48,6 +48,9 @@ export const ActivityDetails = ({ activities }) => {
         <input type="text" placeholder="CVC" required />
         <button type="submit" className="pay-button">
           Proceder al Pago
+        </button>
+        <button type="button" className="cancel-button" style={{marginLeft: '10px'}} onClick={() => navigate('/activities')}>
+          Cancelar y Volver
         </button>
       </form>
     </div>

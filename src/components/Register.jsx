@@ -1,7 +1,9 @@
 // src/components/Register.jsx
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Register.css';
+
+import { AuthContext } from '../AuthContext';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -10,6 +12,7 @@ const Register = () => {
   const [verificationCode, setVerificationCode] = useState('');
   const navigate = useNavigate();
   const PREDEFINED_CODE = '123456'; // Código de verificación de prueba
+  const { setIsAuthenticated } = useContext(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -35,6 +38,7 @@ const Register = () => {
   const handleSocialLogin = () => {
     // Simular inicio de sesión con redes sociales (TAREA4)
     localStorage.setItem('isAuthenticated', 'true');
+    setIsAuthenticated(true);
     alert('Inicio de sesión con redes sociales simulado. Redirigiendo...');
     navigate('/activities');
   };

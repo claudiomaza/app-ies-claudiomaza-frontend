@@ -10,7 +10,8 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('isAuthenticated', isAuthenticated);
-  }, [isAuthenticated]);
+  console.log('localStorage actualizado. isAuthenticated:', isAuthenticated);
+}, [isAuthenticated]);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>

@@ -1,12 +1,24 @@
 // src/components/ActivitiesList.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthContext'; 
 import './ActivitiesList.css'; 
 
 export const ActivitiesList = ({ activities }) => {
+
+  const { setIsAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('isAuthenticated');
+    navigate('/login');
+  };
+
   return (
     <div className="activities-list-container">
       <h2>Actividades Disponibles</h2>
+      <button onClick={handleLogout} style={{ marginBottom: '20px' }}>Cerrar Sesión</button>
       <div className="activities-grid">
         {activities.map(activity => (
           <div key={activity.id} className="activity-card">
