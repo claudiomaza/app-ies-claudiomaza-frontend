@@ -1,7 +1,8 @@
 // src/components/ActivityDetails.jsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './ActivityDetails.css'; // Asegúrate de crear este archivo para los estilos
+import axios from 'axios'; // Importa axios
+import './ActivityDetails.css';
 
 export const ActivityDetails = ({ activities }) => {
   const { id } = useParams();
@@ -12,25 +13,34 @@ export const ActivityDetails = ({ activities }) => {
     return <div>Actividad no encontrada.</div>;
   }
 
-  const handlePaymentSimulation = (e) => {
+  const handlePaymentSimulation = async (e) => {
     e.preventDefault();
-    // Simula la confirmación de la reserva
-    console.log(`Simulando pago para "${activity.title}".`);
-    alert("¡Reserva confirmada con éxito! Su pago ha sido procesado.");
+    try {
+      // Hace una llamada POST al servidor simulado
+      const response = await axios.post('http://localhost:3001/api/reservations', {
+        activityId: activity.id,
+        paymentMethod: 'credit_card' // Simula un método de pago
+      });
 
-    // Redirigir al usuario a la página de éxito o principal
-    navigate('/');
+      // La respuesta del servidor contendrá el confirmationCode
+      console.log('Reserva confirmada:', response.data);
+      alert(`¡Reserva confirmada! Código de confirmación: ${response.data.confirmationCode}`);
+
+      // Almacena la reserva en el localStorage si lo deseas
+      const currentReservations = JSON.parse(localStorage.getItem('reservations') || '[]');
+      localStorage.setItem('reservations', JSON.stringify([...currentReservations, response.data]));
+
+      // Redirige al usuario
+      navigate('/');
+    } catch (error) {
+      console.error('Error al hacer la reserva:', error);
+      alert('Hubo un error al procesar la reserva. Intente de nuevo.');
+    }
   };
 
   return (
     <div className="activity-details-container">
-      <img src={activity.photoUrl} alt={activity.title} className="details-image" />
-      <h1>{activity.title}</h1>
-      <p>{activity.description}</p>
-      <p>Precio: ${activity.price}</p>
-      <p>Disponibilidad: {activity.availability}</p>
-
-      {/* Formulario de Pago de Prueba */}
+      {/* ...el resto del código del componente */}
       <form onSubmit={handlePaymentSimulation} className="payment-form">
         <h3>Detalles de Pago</h3>
         <input type="text" placeholder="Número de tarjeta de prueba" required />

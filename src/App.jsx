@@ -1,21 +1,34 @@
+// src/App.jsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Register from './components/Register';
+import Login from './components/Login';
 import { ActivitiesList } from './components/ActivitiesList';
+import { ActivityDetails } from './components/ActivityDetails';
 import { activities } from './data';
-import { ActivityDetails } from './components/ActivityDetails'; // Componente que crearás a continuación
+import './App.css'; 
 
-import './App.css'; // Estilos globales
+const isAuthenticated = () => {
+  return localStorage.getItem('isAuthenticated') === 'true';
+};
 
 function App() {
   return (
     <Router>
       <div className="app-container">
         <Routes>
-          {/* Ruta para la lista de actividades */}
-          <Route path="/" element={<ActivitiesList activities={activities} />} />
+          <Route path="/" element={<Register />} />
+          <Route path="/login" element={<Login />} />
 
-          {/* Ruta para el detalle de una actividad */}
-          <Route path="/activity/:id" element={<ActivityDetails activities={activities} />} />
+          {/* Rutas protegidas */}
+          <Route
+            path="/activities"
+            element={isAuthenticated() ? <ActivitiesList activities={activities} /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/activity/:id"
+            element={isAuthenticated() ? <ActivityDetails activities={activities} /> : <Navigate to="/login" />}
+          />
         </Routes>
       </div>
     </Router>
