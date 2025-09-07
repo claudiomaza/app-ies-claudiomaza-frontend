@@ -1,8 +1,4 @@
-Claro, aquí tienes el contenido que proporcionaste, formateado en **Markdown**:
-
----
-
-# Proyecto de Reservas - IES Claudio Maza (Versión Local)
+# Proyecto de Reservas - IES Claudio Maza Primer Incremento
 
 Este README describe cómo configurar y ejecutar el proyecto de forma local, **sin utilizar contenedores de Docker**.
 
